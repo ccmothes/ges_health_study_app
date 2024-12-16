@@ -4,8 +4,7 @@
 #' Author: Sheena Martenies
 #' Contact: smarte4@illinois.edu
 #' 
-#' Description: Creating test code for the dynamic figures we want in the 
-#' shiny app
+#' Description: helper functions for the Interactive Maps
 #' =============================================================================
 
 library(here)
@@ -43,7 +42,7 @@ pub_date <- "2024-12-12"
 #' ===============================================
 
 #' ===============================================
-#' LANGUAGE SWITCH
+#' LANGUAGE SWITCH: TRUE OR FALSE
 
 spanish <- FALSE
 
@@ -356,14 +355,39 @@ hist_variable <- function(plot_var, color_ramp) {
 
 #' Neighborhood comparison map
 compare_map <- function(plot_nbhd1, plot_nbhd2) {
+  
+  if(plot_nbhd1 == plot_nbhd2) {
+    comp_nbhds <- filter(neighborhoods, NBHD_NAME == plot_nbhd1) %>%
+      mutate(nbhd_fac = factor(NBHD_NAME, levels = c(plot_nbhd1),
+                               labels = c(plot_nbhd1))) %>%
+      mutate(nudge_y = 0.01)
+    cols <- c(ges_col)
+    labs <- c(plot_nbhd1)
+      
+  } else {
+    comp_nbhds <- filter(neighborhoods, NBHD_NAME %in% c(plot_nbhd1, plot_nbhd2)) %>%
+      mutate(nbhd_fac = factor(NBHD_NAME, levels = c(plot_nbhd1, plot_nbhd2),
+                               labels = c(plot_nbhd1, plot_nbhd2))) %>%
+      mutate(nudge_y = c(0.01, -0.01))
+    cols <- c(ges_col, den_col)
+    labs <- c(plot_nbhd1, plot_nbhd2)
+  }
+  
   comp_map <- ggplot() +
     geom_sf(data = neighborhoods, fill = "white", color = "black") +
-    geom_sf_interactive(data = filter(nbhd_data, NBHD_NAME == plot_nbhd1),
-                        aes(tooltip = NBHD_NAME),
-                        fill = ges_col, color = "black") +
-    geom_sf_interactive(data = filter(nbhd_data, NBHD_NAME == plot_nbhd2),
-                        aes(tooltip = NBHD_NAME),
-                        fill = den_col, color = "black") +
+    geom_sf(data = filter(nbhd_data, NBHD_NAME == plot_nbhd1),
+            fill = ges_col, color = "black") +
+    geom_sf(data = filter(nbhd_data, NBHD_NAME == plot_nbhd2),
+            fill = den_col, color = "black") +
+    geom_sf_label(data = comp_nbhds,
+                        aes(label = nbhd_fac, color = nbhd_fac),
+                  nudge_y = comp_nbhds$nudge_y,
+                  hjust = "inward", fontface = "bold",
+                  size = 4,
+                  show.legend = F) +
+    scale_color_manual(name = "Neighborhood",
+                       values = cols,
+                       labels = labs) +
     #' Standard elements for all plots
     annotation_north_arrow(aes(location = "tl"), 
                            height = unit(1, "cm"), width = unit(1, "cm")) +
@@ -373,6 +397,7 @@ compare_map <- function(plot_nbhd1, plot_nbhd2) {
                      plot_nbhd2, text["text_95"]),
          caption = text["text_89"]) +
     map_theme
+  #comp_map
   return(comp_map)
 }
 
@@ -419,13 +444,13 @@ compare_variables <- function(plot_var1, plot_var2,
                shape = "|", size = 10, color = ges_col) +
     geom_text(data = filter(bar_df1, NBHD_NAME == plot_nbhd1),
               aes(x = value_scaled, y = var, label = nbhd_label),
-              color = ges_col, fontface = "bold", vjust = -2) +
+              color = ges_col, fontface = "bold", vjust = -2, hjust = "inward") +
     geom_point(data = filter(bar_df1, NBHD_NAME == plot_nbhd2),
                aes(x = value_scaled, y = var),
                shape = "|", size = 10, color = den_col) +
     geom_text(data = filter(bar_df1, NBHD_NAME == plot_nbhd2),
               aes(x = value_scaled, y = var, label = nbhd_label),
-              color = den_col, fontface = "bold", vjust = 3) +
+              color = den_col, fontface = "bold", vjust = 3, hjust = "inward") +
     annotate(geom = "text", x = c(-0.01, 1.01), y = plot_var1,
              label = c(bar_min1, bar_max1), hjust = c(1, 0)) +
     #scale_y_discrete(labels = dictionary[which(dictionary$variable == var1), "short_var_name"]) +
@@ -475,13 +500,13 @@ compare_variables <- function(plot_var1, plot_var2,
                shape = "|", size = 10, color = ges_col) +
     geom_text(data = filter(bar_df2, NBHD_NAME == plot_nbhd1),
               aes(x = value_scaled, y = var, label = nbhd_label),
-              color = ges_col, fontface = "bold", vjust = -2) +
+              color = ges_col, fontface = "bold", vjust = -2, hjust = "inward") +
     geom_point(data = filter(bar_df2, NBHD_NAME == plot_nbhd2),
                aes(x = value_scaled, y = var),
                shape = "|", size = 10, color = den_col) +
     geom_text(data = filter(bar_df2, NBHD_NAME == plot_nbhd2),
               aes(x = value_scaled, y = var, label = nbhd_label),
-              color = den_col, fontface = "bold", vjust = 3) +
+              color = den_col, fontface = "bold", vjust = 3, hjust = "inward") +
     annotate(geom = "text", x = c(-0.01, 1.01), y = plot_var2,
              label = c(bar_min2, bar_max2), hjust = c(1, 0)) +
     #scale_y_discrete(labels = dictionary[which(dictionary$variable == var1), "short_var_name"]) +
