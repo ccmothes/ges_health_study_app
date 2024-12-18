@@ -38,7 +38,7 @@ text_dictionary <- readxl::read_xlsx("ges_health_study_app/text_dictionary.xlsx"
 #' PUBLISHED DATE
 #' When you make changes to the app, update the pub_date below
 
-pub_date <- "2024-12-12"
+pub_date <- "2024-12-17"
 #' ===============================================
 
 #' ===============================================
@@ -201,7 +201,8 @@ map_variable <- function(geo = "Neighborhoods", map_var, show_boundaries = T,
     #' Layers if geography is neighborhoods:
     {if(geo == "Neighborhoods")
       geom_sf(data = nbhd_data,
-              aes(fill = .data[[map_var]]), show.legend = show_legend,
+              aes(fill = .data[[map_var]]), 
+                  show.legend = show_legend,
               color = "black", inherit.aes = F)} +
     {if(show_boundaries & geo == "Neighborhoods")
       geom_sf(data = neighborhoods, aes(color = "denver"),
@@ -209,7 +210,7 @@ map_variable <- function(geo = "Neighborhoods", map_var, show_boundaries = T,
               inherit.aes = F, linewidth = 0.25)} +
     {if(show_boundaries & geo == "Neighborhoods")
       geom_sf(data = ges, aes(color = "ges"), fill = NA,
-              show.legend = "polygon", inherit.aes = F, linewidth = 1) 
+              show.legend = "polygon", inherit.aes = F, linewidth = 1.5) 
       } +
     {if(show_boundaries & geo == "Neighborhoods")
       scale_color_manual(name = geo_name,
@@ -236,22 +237,33 @@ map_variable <- function(geo = "Neighborhoods", map_var, show_boundaries = T,
     #                                 "ges" = ges_col),
     #                      labels = c("denver" = "All Denver tracts",
     #                                 "ges" = "GES Tracts"))} +
-
+    
     #' Fill option when label_function == "percent", "currency", or "none"
     {if(label_function == "percent")
-      scale_fill_continuous_sequential(palette = color_ramp,
-                                       rev = T,
-                                       name = legend_title,
-                                       labels = label_percent(scale = 1))} +
+      scale_fill_binned_sequential(palette = color_ramp,
+                                   rev = T,
+                                   name = legend_title,
+                                   labels = label_percent(scale = 1,
+                                                          accuracy = 0.1),
+                                   nice.breaks = F,
+                                   n.breaks = 3,
+                                   show.limits = T)} +
     {if(label_function == "currency")
-      scale_fill_continuous_sequential(palette = color_ramp,
-                                       rev = T,
-                                       name = legend_title,
-                                       labels = label_currency())} +
+      scale_fill_binned_sequential(palette = color_ramp,
+                                   rev = T,
+                                   name = legend_title,
+                                   labels = label_currency(accuracy = 0),
+                                   nice.breaks = F,
+                                   n.breaks = 3,
+                                   show.limits = T)} +
     {if(label_function == "none")
-      scale_fill_continuous_sequential(palette = color_ramp,
-                                       rev = T,
-                                       name = legend_title)} +
+      scale_fill_binned_sequential(palette = color_ramp,
+                                   rev = T,
+                                   name = legend_title,
+                                   labels = label_number(accuracy = 0.1),
+                                   nice.breaks = F,
+                                   n.breaks = 3,
+                                   show.limits = T)} +
 
     #' Correcting the legend for the boundaries
     {if(show_boundaries)
@@ -325,6 +337,7 @@ hist_variable <- function(plot_var, color_ramp) {
   hist <- ggplot() +
     geom_histogram(data  = filter(nbhd_data_long, var == plot_var),
                    aes(x = value),
+                   bins = 20,
                    fill = alpha(sequential_hcl(palette = color_ramp, n = 11)[6], 0.5),
                    color = sequential_hcl(palette = color_ramp, n = 11)[6]) 
   max_count <- max(ggplot_build(hist)$data[[1]]$count)
@@ -346,8 +359,8 @@ hist_variable <- function(plot_var, color_ramp) {
          x = paste0(plot_title, " (",legend_title, ")"),
          title = plot_title, 
          subtitle = str_wrap(plot_subtitle, 90),
-         caption = paste(text["text_84"], source, "\n", str_wrap(footnote, 110)),
-         alt = paste(text["text_82"], alt_text, text["text_83"])) +
+         caption = paste(text["text_84"], source, "\n", str_wrap(footnote, 70)),
+         alt = paste(text["text_107"], alt_text, text["text_83"])) +
     #scale_x_continuous(labels = var_title) +
     theme(axis.text.y = element_text(angle = 90, hjust = 0.5, size = 12))
   return(hist2)
@@ -452,7 +465,8 @@ compare_variables <- function(plot_var1, plot_var2,
               aes(x = value_scaled, y = var, label = nbhd_label),
               color = den_col, fontface = "bold", vjust = 3, hjust = "inward") +
     annotate(geom = "text", x = c(-0.01, 1.01), y = plot_var1,
-             label = c(bar_min1, bar_max1), hjust = c(1, 0)) +
+             label = c(str_wrap(bar_min1, width = 15), str_wrap(bar_max1, width = 15)), 
+             hjust = c(1, 0)) +
     #scale_y_discrete(labels = dictionary[which(dictionary$variable == var1), "short_var_name"]) +
     xlim(c(-0.1, 1.1)) +
     xlab("")  + ylab("") +
@@ -508,7 +522,8 @@ compare_variables <- function(plot_var1, plot_var2,
               aes(x = value_scaled, y = var, label = nbhd_label),
               color = den_col, fontface = "bold", vjust = 3, hjust = "inward") +
     annotate(geom = "text", x = c(-0.01, 1.01), y = plot_var2,
-             label = c(bar_min2, bar_max2), hjust = c(1, 0)) +
+             label = c(str_wrap(bar_min2, width = 15), str_wrap(bar_max2, width = 15)), 
+             hjust = c(1, 0)) +
     #scale_y_discrete(labels = dictionary[which(dictionary$variable == var1), "short_var_name"]) +
     xlim(c(-0.1, 1.1)) +
     xlab("")  + ylab("") +
