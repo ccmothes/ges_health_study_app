@@ -38,7 +38,7 @@ text_dictionary <- readxl::read_xlsx("ges_health_study_app/text_dictionary.xlsx"
 #' PUBLISHED DATE
 #' When you make changes to the app, update the pub_date below
 
-pub_date <- "2024-12-17"
+pub_date <- "2024-12-18"
 #' ===============================================
 
 #' ===============================================
@@ -73,7 +73,8 @@ if(spanish == F) {
              "ppm" = " ppm",
              "none" = "",
              "deg_F" = "\U2109",
-             "dBA" = " dBA Leq")
+             "dBA" = " dBA Leq",
+             "years" = " years")
   
   comm_map_source <- "interactive_community_locations_map_02.15.23.html"
   health_map_source <- "interactive_nbn_health_map_02.15.23.html"
@@ -103,7 +104,8 @@ if(spanish == F) {
              "ppm" = " ppm",
              "none" = "",
              "deg_F" = "\U2109",
-             "dBA" = " dBA Leq")
+             "dBA" = " dBA Leq",
+             "years" = " años")
   
   comm_map_source <-"interactive_community_locations_map_es_02.27.23.html"
   health_map_source <- "interactive_nbn_health_map_es_02.27.23.html"
@@ -337,7 +339,7 @@ hist_variable <- function(plot_var, color_ramp) {
   hist <- ggplot() +
     geom_histogram(data  = filter(nbhd_data_long, var == plot_var),
                    aes(x = value),
-                   bins = 20,
+                   bins = 30,
                    fill = alpha(sequential_hcl(palette = color_ramp, n = 11)[6], 0.5),
                    color = sequential_hcl(palette = color_ramp, n = 11)[6]) 
   max_count <- max(ggplot_build(hist)$data[[1]]$count)

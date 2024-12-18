@@ -385,7 +385,11 @@ server <- function(input, output, session) {
                                  map_var = input$var1, show_boundaries = T,
                                  show_highways = T, color_ramp = "Blues")
     girafe(ggobj = mapping_var1,
-           height_svg = 7, width_svg = 7)
+           pointsize = 14,
+           height_svg = 7, width_svg = 7,
+           title = paste(text["text_82"],
+                         dictionary[which(dictionary$variable == input$var1), "alt_text"],
+                         text["text_83"]))
   })
 
   output$map_var1_cap <- renderUI({
@@ -402,7 +406,11 @@ server <- function(input, output, session) {
                                  map_var = input$var2, show_boundaries = T,
                                  show_highways = T, color_ramp = "Burg")
     girafe(ggobj = mapping_var2,
-           height_svg = 7, width_svg = 7)
+           pointsize = 14,
+           height_svg = 7, width_svg = 7,
+           title = paste(text["text_82"],
+                         dictionary[which(dictionary$variable == input$var2), "alt_text"],
+                         text["text_83"]))
   })
   
   output$map_var2_cap <- renderUI({
@@ -419,7 +427,11 @@ server <- function(input, output, session) {
                                  map_var = input$var3, show_boundaries = T,
                                  show_highways = T, color_ramp = "Blues")
     girafe(ggobj = mapping_var3,
-           height_svg = 7, width_svg = 7)
+           pointsize = 14,
+           height_svg = 7, width_svg = 7,
+           title = paste(text["text_82"],
+                         dictionary[which(dictionary$variable == input$var3), "alt_text"],
+                         text["text_83"]))
   })
   
   output$map_var3_cap <- renderUI({
@@ -436,7 +448,11 @@ server <- function(input, output, session) {
                                  map_var = input$var4, show_boundaries = T,
                                  show_highways = T, color_ramp = "Purples")
     girafe(ggobj = mapping_var4,
-           height_svg = 7, width_svg = 7)
+           pointsize = 14,
+           height_svg = 7, width_svg = 7,
+           title = paste(text["text_82"],
+                         dictionary[which(dictionary$variable == input$var4), "alt_text"],
+                         text["text_83"]))
   })
   
   output$map_var4_cap <- renderUI({
