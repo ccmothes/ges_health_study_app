@@ -248,7 +248,8 @@ map_variable <- function(geo = "Neighborhoods", map_var, show_boundaries = T,
                                    labels = label_percent(scale = 1,
                                                           accuracy = 0.1),
                                    nice.breaks = F,
-                                   n.breaks = 3,
+                                   breaks = function(x) 
+                                     quantile(x, probs = c(0.25, 0.5, 0.75)),
                                    show.limits = T)} +
     {if(label_function == "currency")
       scale_fill_binned_sequential(palette = color_ramp,
@@ -256,7 +257,8 @@ map_variable <- function(geo = "Neighborhoods", map_var, show_boundaries = T,
                                    name = legend_title,
                                    labels = label_currency(accuracy = 0),
                                    nice.breaks = F,
-                                   n.breaks = 3,
+                                   breaks = function(x) 
+                                     quantile(x, probs = c(0.25, 0.5, 0.75)),
                                    show.limits = T)} +
     {if(label_function == "none")
       scale_fill_binned_sequential(palette = color_ramp,
@@ -264,7 +266,8 @@ map_variable <- function(geo = "Neighborhoods", map_var, show_boundaries = T,
                                    name = legend_title,
                                    labels = label_number(accuracy = 0.1),
                                    nice.breaks = F,
-                                   n.breaks = 3,
+                                   breaks = function(x) 
+                                     quantile(x, probs = c(0.25, 0.5, 0.75)),
                                    show.limits = T)} +
 
     #' Correcting the legend for the boundaries

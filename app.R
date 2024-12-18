@@ -404,7 +404,7 @@ server <- function(input, output, session) {
   output$map_var2 <- renderGirafe({
     mapping_var2 <- map_variable(geo = "Neighborhoods", 
                                  map_var = input$var2, show_boundaries = T,
-                                 show_highways = T, color_ramp = "Burg")
+                                 show_highways = T, color_ramp = "Grays")
     girafe(ggobj = mapping_var2,
            pointsize = 14,
            height_svg = 7, width_svg = 7,
@@ -484,7 +484,7 @@ server <- function(input, output, session) {
   })
   
   output$hist_var2 <- renderPlot({
-    hist_variable(plot_var = input$var2, color_ramp = "Burg")
+    hist_variable(plot_var = input$var2, color_ramp = "Grays")
   },
   alt = reactive({
     paste(text["text_107"], 
@@ -634,7 +634,7 @@ server <- function(input, output, session) {
                            show_highways = T, color_ramp = "Blues")
       map2 <- map_variable(geo = "Neighborhoods", 
                            map_var = input$var2, show_boundaries = T,
-                           show_highways = T, color_ramp = "Burg")
+                           show_highways = T, color_ramp = "Grays")
       maps <- map1 + map2
       print(maps)
       dev.off()
@@ -671,7 +671,7 @@ server <- function(input, output, session) {
            bg = "white")
       
       hist1 <- hist_variable(plot_var = input$var1, color_ramp = "Blues")
-      hist2 <- hist_variable(plot_var = input$var2, color_ramp = "Burg")
+      hist2 <- hist_variable(plot_var = input$var2, color_ramp = "Grays")
       
       hist <- hist1 + hist2
       print(hist)
