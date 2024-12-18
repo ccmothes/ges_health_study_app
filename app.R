@@ -344,9 +344,9 @@ server <- function(input, output, session) {
             legend.position.inside = c(0.84, 0.55))
     
     girafe(ggobj = nbhd_map1,
-           height_svg = 6, width_svg = 6)
+           height_svg = 6, width_svg = 6,
+           title = text["text_114"])
   })
-  #' Caption for nbhd map is static: text_108
   
   output$neighborhood_map2 <- renderGirafe({
     nbhd_map2 <- ggplot() +
@@ -376,9 +376,9 @@ server <- function(input, output, session) {
             legend.position.inside = c(0.84, 0.55))
     
     girafe(ggobj = nbhd_map2,
-           height_svg = 6, width_svg = 6)
+           height_svg = 6, width_svg = 6,
+           title = text["text_114"])
   })
-  #' Caption for nbhd map is static: text_108
   
   output$map_var1 <- renderGirafe({
     mapping_var1 <- map_variable(geo = "Neighborhoods", 
@@ -388,8 +388,8 @@ server <- function(input, output, session) {
            pointsize = 14,
            height_svg = 7, width_svg = 7,
            title = paste(text["text_82"],
-                         dictionary[which(dictionary$variable == input$var1), "alt_text"],
-                         text["text_83"]))
+                        dictionary[which(dictionary$variable == input$var1), "alt_text"],
+                        text["text_83"]))
   })
 
   output$map_var1_cap <- renderUI({
@@ -409,8 +409,8 @@ server <- function(input, output, session) {
            pointsize = 14,
            height_svg = 7, width_svg = 7,
            title = paste(text["text_82"],
-                         dictionary[which(dictionary$variable == input$var2), "alt_text"],
-                         text["text_83"]))
+                        dictionary[which(dictionary$variable == input$var2), "alt_text"],
+                        text["text_83"]))
   })
   
   output$map_var2_cap <- renderUI({
@@ -430,8 +430,8 @@ server <- function(input, output, session) {
            pointsize = 14,
            height_svg = 7, width_svg = 7,
            title = paste(text["text_82"],
-                         dictionary[which(dictionary$variable == input$var3), "alt_text"],
-                         text["text_83"]))
+                        dictionary[which(dictionary$variable == input$var3), "alt_text"],
+                        text["text_83"]))
   })
   
   output$map_var3_cap <- renderUI({
@@ -451,8 +451,8 @@ server <- function(input, output, session) {
            pointsize = 14,
            height_svg = 7, width_svg = 7,
            title = paste(text["text_82"],
-                         dictionary[which(dictionary$variable == input$var4), "alt_text"],
-                         text["text_83"]))
+                        dictionary[which(dictionary$variable == input$var4), "alt_text"],
+                        text["text_83"]))
   })
   
   output$map_var4_cap <- renderUI({
