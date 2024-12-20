@@ -13,7 +13,7 @@ source("ges_health_study_app/helpers.R")
 # Define UI ----
 ui <- page_navbar(title = text["text_1"],
   setBackgroundColor("#3c005a"),
-                  
+
   #' Welcome tab
   nav_panel(title = text["text_2"],
             titlePanel(h1(text["text_2"], style = 'color:white; font-weight: bold;')),
@@ -95,12 +95,24 @@ ui <- page_navbar(title = text["text_1"],
               titlePanel(h1(text["text_10"], style = 'color:white; font-weight: bold;')),
               #titlePanel(text["text_10"]),
               page_fluid(
-                card(
-                  p(text["text_30"]),
-                  p(text["text_31"]),
-                  p(text["text_32"]),
-                  p(text["text_33"]),
-                  p(text["text_34"]),
+                layout_columns(
+                  card(
+                    p(text["text_30"]),
+                    p(text["text_31"]),
+                    p(text["text_32"]),
+                    p(text["text_33"]),
+                    p(text["text_34"]),
+                  ),
+                  card(card_header(text["text_115"]),
+                       text["text_116"],
+                       em(text["text_117"]),
+                       textInput("geo_add1", text["text_118"], 
+                                 "4777 National Western Dr, Denver, CO 80216",
+                                 width = '100%'),
+                       actionButton("geo_add_go1", text["text_119"],
+                                    width = '100%'),
+                       plotOutput("geo_nbhd_map1")
+                  )
                 ),
                 layout_columns(
                   card(card_header(text["text_35"]),
@@ -177,12 +189,24 @@ ui <- page_navbar(title = text["text_1"],
               titlePanel(h1(text["text_97"], style = 'color:white; font-weight: bold;')),
               #titlePanel(text["text_97"]),
               page_fluid(
-                card(
-                  p(text["text_90"]),
-                  p(text["text_91"]),
-                  p(text["text_32"]),
-                  p(text["text_33"]),
-                  p(text["text_34"]),
+                layout_columns(
+                  card(
+                    p(text["text_90"]),
+                    p(text["text_91"]),
+                    p(text["text_32"]),
+                    p(text["text_33"]),
+                    p(text["text_34"]),
+                  ),
+                  card(card_header(text["text_115"]),
+                       text["text_116"],
+                       em(text["text_117"]),
+                       textInput("geo_add2", text["text_118"], 
+                                 "4777 National Western Dr, Denver, CO 80216",
+                                 width = '100%'),
+                       actionButton("geo_add_go2", text["text_119"],
+                                    width = '100%'),
+                       plotOutput("geo_nbhd_map2")
+                  )
                 ),
                 layout_columns(
                   card(card_header(text["text_35"]),
@@ -313,9 +337,29 @@ ui <- page_navbar(title = text["text_1"],
             )
 )
 
+error_message_1 <- "Please enter an address"
+
 # Define server logic ----
 server <- function(input, output, session) {
 
+  #' "Find a neighborhood" maps
+  add_nbhd1 <- eventReactive(input$geo_add_go1, {
+    find_nbhd(input$geo_add1)
+  })
+
+  output$geo_nbhd_map1 <- renderPlot({
+    map_nbhd(add_nbhd1())
+  })
+
+  add_nbhd2 <- eventReactive(input$geo_add_go2, {
+    find_nbhd(input$geo_add2)
+  })
+  
+  output$geo_nbhd_map2 <- renderPlot({
+    map_nbhd(add_nbhd2())
+  })
+  
+  #' Name maps
   output$neighborhood_map1 <- renderGirafe({
     nbhd_map1 <- ggplot() +
       geom_sf(data = neighborhoods, aes(color = "denver"),
@@ -380,6 +424,7 @@ server <- function(input, output, session) {
            title = text["text_114"])
   })
   
+  #' Variable maps:
   output$map_var1 <- renderGirafe({
     mapping_var1 <- map_variable(geo = "Neighborhoods", 
                                  map_var = input$var1, show_boundaries = T,
@@ -464,6 +509,7 @@ server <- function(input, output, session) {
     )
   })
   
+  #' Histogram maps
   output$hist_var1 <- renderPlot({
     hist_variable(plot_var = input$var1, color_ramp = "Blues")
   },
@@ -540,6 +586,7 @@ server <- function(input, output, session) {
     )
   })
   
+  #' Comparison map: neighborhoods
   output$compare_map1 <- renderPlot({
     compare_map(plot_nbhd1 = input$nbhd1, plot_nbhd2 = input$nbhd2)
   },
@@ -556,6 +603,7 @@ server <- function(input, output, session) {
   })
   )
   
+  #' Comparison plots
   output$compare_plot1 <- renderPlot({
     compare_variables(plot_var1 = input$var1, plot_var2 = input$var2,
                       plot_nbhd1 = input$nbhd1, plot_nbhd2 = input$nbhd2)
@@ -604,6 +652,7 @@ server <- function(input, output, session) {
     )
   })
   
+  #' Download buttons
   output$download_data1 <- downloadHandler(
     filename = function() {
       paste0(input$var1, "_", input$var2, ".csv")
@@ -731,7 +780,8 @@ server <- function(input, output, session) {
     },
     contentType = 'image/jpeg'
   )
-
+  
+  #' Other mapping products
   #addResourcePath("html_maps", "./html_maps")
   output$comm_map <- renderUI({
     tags$iframe(seamless = "seamless",

@@ -23,6 +23,7 @@ library(colorspace)
 library(ggnewscale)
 library(patchwork)
 library(ggiraph)
+library(tidygeocoder)
 
 #' Load data (see code/03_final_data_sets.R)
 load("ges_health_study_app/ges_app_data.rdata")
@@ -38,7 +39,7 @@ text_dictionary <- readxl::read_xlsx("ges_health_study_app/text_dictionary.xlsx"
 #' PUBLISHED DATE
 #' When you make changes to the app, update the pub_date below
 
-pub_date <- "2024-12-18"
+pub_date <- "2024-12-20"
 #' ===============================================
 
 #' ===============================================
@@ -85,6 +86,7 @@ if(spanish == F) {
   den_name <- "Denver Neighborhoods"
   ges_name <- "GES Neighborhoods"
   hist_y_lab <- "Number of neighborhoods"
+  nbhd_missing <- "Neighborhood not available"
 } else {
   #' FOR SPANISH
   dictionary <- readxl::read_xlsx("ges_health_study_app/dictionary_spanish.xlsx") %>%
@@ -116,6 +118,7 @@ if(spanish == F) {
   den_name <- "Barrios de Denver"
   ges_name <- "Barrios de GES"
   hist_y_lab <- "Número de barrios"
+  nbhd_missing <- "Barrio no disponible"
 }
 
 #' END OF THE LANUGUAGE SPECIFIC SECTION OF CODE
@@ -541,6 +544,44 @@ compare_variables <- function(plot_var1, plot_var2,
 
   combined_plot <- bar1 / bar2
   return(combined_plot)
+}
+
+#' Geocoder function
+#' Using US Census Geocoder via tidygeocoder
+find_nbhd <- function(add) {
+  add_tibble <- tibble(address = add) %>%
+    tidygeocoder::geocode(address, method = "census") %>%
+    st_as_sf(coords = c("long", "lat"), crs = "EPSG:4269")
+  add_nbhd <- st_transform(add_tibble, crs = st_crs(neighborhoods)) %>%
+    st_join(neighborhoods, largest = T)
+
+  return(add_nbhd)
+}
+
+#' Map and label neighborhood (if address is in Denver)
+map_nbhd <- function(add_nbhd) {
+  
+  add_nbhd_map <- ggplot() +
+    geom_sf(data = neighborhoods,
+            show.legend = "polygon", fill = NA, color = "black",
+            inherit.aes = F, linewidth = 0.25) +
+    {if(!is.na(add_nbhd$NBHD_NAME[1]))
+      geom_sf(data = filter(neighborhoods, NBHD_NAME == add_nbhd$NBHD_NAME[1]), 
+              fill = "darkgreen", color = "darkgreen", alpha = 0.2,
+              show.legend = "polygon", inherit.aes = F, linewidth = 1)} +
+    
+    xlab("")  + ylab("") +
+    
+    {if(!is.na(add_nbhd$NBHD_NAME[1]))
+      labs(title = add_nbhd$NBHD_NAME[1])} +
+    
+    {if(is.na(add_nbhd$NBHD_NAME[1]))
+      labs(title = nbhd_missing)} +
+    
+    map_theme +
+    theme(plot.title = element_text(hjust = 0.5))
+  
+  return(add_nbhd_map)
 }
 
 
