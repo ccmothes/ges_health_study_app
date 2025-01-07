@@ -54,6 +54,8 @@ location data were obtained from [Denver Open Data](https://opendata-geospatiald
 - Per-1980 housing data obtained from the 5-Year American Community Survey (2017-2021) 
 from the [US Census Bureau](https://www.census.gov/programs-surveys/acs/news/data-releases.2021.html#list-tab-1133175109)
 
+Data used to develop the app are available [here--TO BE ADDED]().
+
 ### Overview of Data Formatting Methods
 Our interactive mapping tool is an extension of our previous health impact assessment 
 (HIA) conducted for the GES neighborhoods published in January 2024. This HIA is available
