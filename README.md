@@ -42,7 +42,7 @@ Life expectancy data were obtained from the [USALEEP Project](https://www.cdc.go
 
 Environmental data were obtained from a number of sources:
 
-- Criteria air pollutant (PM$_{2.5}$, PM$_{10}$, O$_{3}$, NO$_{2}$, SO$_{2}$, and CO) data were 
+- Criteria air pollutant (PM<sub>2.5</sub>, PM<sub>10</sub>, O<sub>3</sub>, NO<sub>2</sub>, SO<sub>2</sub>, and CO) data were 
 obtained from [US EPA](https://aqs.epa.gov/aqsweb/documents/data_api.html)
 - Alcohol retailer and cannabis cultivation license information were obtained from 
 the [Colorado Department of Revenue](https://sbg.colorado.gov/) and food retail 
@@ -109,9 +109,9 @@ the long-term pollutant measurements at each location. Then, we used inverse-dis
 weighting to estimate long-term averages at the centroid of each neighborhood. 
 Any monitoring data within 50 km of the census tract centroid were included. The 
 number of locations for interpolation varied by pollutant. The most data were 
-available for O$_{3}$ (11 monitoring locations) and PM$_{2.5}$ (9 monitoring locations), 
-followed by NO$_{2}$ (6 locations), PM$_{10}$ (5 locations), CO (4 locations), 
-and SO$_{2}$ (3 locations). 
+available for O<sub>3</sub> (11 monitoring locations) and PM<sub>2.5</sub> (9 monitoring locations), 
+followed by NO<sub>2</sub> (6 locations), PM<sub>10</sub> (5 locations), CO (4 locations), 
+and SO<sub>2</sub> (3 locations). 
 
 For indicators available at the raster level (i.e., transportation noise), we used 
 spatial averaging methods to estimate exposures within the neighborhood. The rasters 
