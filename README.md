@@ -42,7 +42,7 @@ Life expectancy data were obtained from the [USALEEP Project](https://www.cdc.go
 
 Environmental data were obtained from a number of sources:
 
-- Criteria air pollutant (PM~2.5~, PM~10~, O~3~, NO~2~, SO~2~, and CO) data were 
+- Criteria air pollutant (PM$_{2.5}$, PM$_{10}$, O$_{3}$, NO$_{2}$, SO$_{2}$, and CO) data were 
 obtained from [US EPA](https://aqs.epa.gov/aqsweb/documents/data_api.html)
 - Alcohol retailer and cannabis cultivation license information were obtained from 
 the [Colorado Department of Revenue](https://sbg.colorado.gov/) and food retail 
@@ -95,7 +95,7 @@ obtain neighborhood level estimates of indicators available at the census tract 
 census tracts with neighborhood boundaries made available from Denver Open Data 
 and calculated the population-weighted mean of the census tract estimates. If a 
 census tract overlapped with more than one neighborhood, it was assigned the 
-neighborhood with the largest overpal. For the population characteristics, we 
+neighborhood with the largest overlap. For the population characteristics, we 
 weighted the census tract estimates by the total population in the census tract. 
 For the health indicators, we weighted the census tract estimates using population 
 estimates that corresponded with the age group represented by the indicator (e.g., 
@@ -109,9 +109,9 @@ the long-term pollutant measurements at each location. Then, we used inverse-dis
 weighting to estimate long-term averages at the centroid of each neighborhood. 
 Any monitoring data within 50 km of the census tract centroid were included. The 
 number of locations for interpolation varied by pollutant. The most data were 
-available for O~3~ (11 monitoring locations) and PM~2.5~ (9 monitoring locations), 
-followed by NO~2~ (6 locations), PM~10~ (5 locations), CO (4 locations), 
-and SO~2~ (3 locations). 
+available for O$_{3}$ (11 monitoring locations) and PM$_{2.5}$ (9 monitoring locations), 
+followed by NO$_{2}$ (6 locations), PM$_{10}$ (5 locations), CO (4 locations), 
+and SO$_{2}$ (3 locations). 
 
 For indicators available at the raster level (i.e., transportation noise), we used 
 spatial averaging methods to estimate exposures within the neighborhood. The rasters 
