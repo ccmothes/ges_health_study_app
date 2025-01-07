@@ -12,6 +12,7 @@ source("ges_health_study_app/helpers.R")
 
 # Define UI ----
 ui <- page_navbar(title = text["text_1"],
+  tags$head(tags$style(type="text/css", "text {font-family: Arial}")),
   setBackgroundColor("#3c005a"),
 
   #' Welcome tab
@@ -401,7 +402,7 @@ server <- function(input, output, session) {
     
     girafe(ggobj = nbhd_map1,
            height_svg = 6, width_svg = 6,
-           title = text["text_114"])
+           desc = text["text_114"])
   })
   
   output$neighborhood_map2 <- renderGirafe({
@@ -433,7 +434,7 @@ server <- function(input, output, session) {
     
     girafe(ggobj = nbhd_map2,
            height_svg = 6, width_svg = 6,
-           title = text["text_114"])
+           desc = text["text_114"])
   })
   
   #' Variable maps:
@@ -444,7 +445,7 @@ server <- function(input, output, session) {
     girafe(ggobj = mapping_var1,
            pointsize = 14,
            height_svg = 7, width_svg = 7,
-           title = paste(text["text_82"],
+           desc = paste(text["text_82"],
                         dictionary[which(dictionary$variable == input$var1), "alt_text"],
                         text["text_83"]))
   })
@@ -465,7 +466,7 @@ server <- function(input, output, session) {
     girafe(ggobj = mapping_var2,
            pointsize = 14,
            height_svg = 7, width_svg = 7,
-           title = paste(text["text_82"],
+           desc = paste(text["text_82"],
                         dictionary[which(dictionary$variable == input$var2), "alt_text"],
                         text["text_83"]))
   })
@@ -486,7 +487,7 @@ server <- function(input, output, session) {
     girafe(ggobj = mapping_var3,
            pointsize = 14,
            height_svg = 7, width_svg = 7,
-           title = paste(text["text_82"],
+           desc = paste(text["text_82"],
                         dictionary[which(dictionary$variable == input$var3), "alt_text"],
                         text["text_83"]))
   })
@@ -507,7 +508,7 @@ server <- function(input, output, session) {
     girafe(ggobj = mapping_var4,
            pointsize = 14,
            height_svg = 7, width_svg = 7,
-           title = paste(text["text_82"],
+           desc = paste(text["text_82"],
                         dictionary[which(dictionary$variable == input$var4), "alt_text"],
                         text["text_83"]))
   })
