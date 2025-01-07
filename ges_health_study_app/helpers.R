@@ -39,13 +39,13 @@ text_dictionary <- readxl::read_xlsx("ges_health_study_app/text_dictionary.xlsx"
 #' PUBLISHED DATE
 #' When you make changes to the app, update the pub_date below
 
-pub_date <- "2024-12-20"
+pub_date <- "2025-01-07"
 #' ===============================================
 
 #' ===============================================
 #' LANGUAGE SWITCH: TRUE OR FALSE
 
-spanish <- TRUE
+spanish <- FALSE
 
 #' THIS SECTION CHANGES DEPENDING ON IF THE APP IS
 #' IN ENGLISH OR SPANISH!!
@@ -549,13 +549,20 @@ compare_variables <- function(plot_var1, plot_var2,
 #' Geocoder function
 #' Using US Census Geocoder via tidygeocoder
 find_nbhd <- function(add) {
-  add_tibble <- tibble(address = add) %>%
-    tidygeocoder::geocode(address, method = "census") %>%
-    st_as_sf(coords = c("long", "lat"), crs = "EPSG:4269")
-  add_nbhd <- st_transform(add_tibble, crs = st_crs(neighborhoods)) %>%
-    st_join(neighborhoods, largest = T)
-
-  return(add_nbhd)
+  tryCatch(
+    {
+      add_tibble <- tibble(address = add) %>%
+        tidygeocoder::geocode(address, method = "census") %>%
+        st_as_sf(coords = c("long", "lat"), crs = "EPSG:4269")
+      add_nbhd <- st_transform(add_tibble, crs = st_crs(neighborhoods)) %>%
+        st_join(neighborhoods, largest = T)
+      return(add_nbhd)
+    },
+    error = function(e) {
+      add_nbhd <- "Need new address"
+      return(add_nbhd)
+    }
+  )
 }
 
 #' Map and label neighborhood (if address is in Denver)

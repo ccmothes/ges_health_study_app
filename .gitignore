@@ -49,8 +49,8 @@ po/*~
 rsconnect/
 
 # Other directories to ignore
-/code
 /data
 /documentation
+/ges_health_study_app/code/prep_code 
 /figs
 /tutorial_app

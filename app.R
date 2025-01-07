@@ -102,11 +102,13 @@ ui <- page_navbar(title = text["text_1"],
                     p(text["text_32"]),
                     p(text["text_33"]),
                     p(text["text_34"]),
+                    p(strong(text["text_120"]), text["text_121"], 
+                      em(text["text_122"]), strong(text["text_123"]))
                   ),
                   card(card_header(text["text_115"]),
                        text["text_116"],
                        em(text["text_117"]),
-                       textInput("geo_add1", text["text_118"], 
+                       textInput("geo_add1", strong(text["text_118"]), 
                                  "4777 National Western Dr, Denver, CO 80216",
                                  width = '100%'),
                        actionButton("geo_add_go1", text["text_119"],
@@ -196,11 +198,13 @@ ui <- page_navbar(title = text["text_1"],
                     p(text["text_32"]),
                     p(text["text_33"]),
                     p(text["text_34"]),
+                    p(strong(text["text_120"]), text["text_121"], 
+                      em(text["text_122"]), strong(text["text_123"]))
                   ),
                   card(card_header(text["text_115"]),
                        text["text_116"],
                        em(text["text_117"]),
-                       textInput("geo_add2", text["text_118"], 
+                       textInput("geo_add2", strong(text["text_118"]), 
                                  "4777 National Western Dr, Denver, CO 80216",
                                  width = '100%'),
                        actionButton("geo_add_go2", text["text_119"],
@@ -348,6 +352,10 @@ server <- function(input, output, session) {
   })
 
   output$geo_nbhd_map1 <- renderPlot({
+    validate(need(is_tibble(add_nbhd1()),
+                  ifelse(spanish == FALSE, 
+                         "Please enter a valid address",
+                         "Por favor, introduzca una dirección válida")))
     map_nbhd(add_nbhd1())
   })
 
@@ -356,6 +364,10 @@ server <- function(input, output, session) {
   })
   
   output$geo_nbhd_map2 <- renderPlot({
+    validate(need(is_tibble(add_nbhd2()),
+                  ifelse(spanish == FALSE, 
+                         "Please enter a valid address",
+                         "Por favor, introduzca una dirección válida")))
     map_nbhd(add_nbhd2())
   })
   
