@@ -45,7 +45,7 @@ pub_date <- "2025-01-07"
 #' ===============================================
 #' LANGUAGE SWITCH: TRUE OR FALSE
 
-spanish <- FALSE
+spanish <- TRUE
 
 #' THIS SECTION CHANGES DEPENDING ON IF THE APP IS
 #' IN ENGLISH OR SPANISH!!
@@ -567,7 +567,16 @@ find_nbhd <- function(add) {
 
 #' Map and label neighborhood (if address is in Denver)
 map_nbhd <- function(add_nbhd) {
-  
+  if(!is.na(add_nbhd$NBHD_NAME[1])) {
+    alt_text <- ifelse(spanish == TRUE, 
+                       "Un mapa que muestra el vecindario asociado con la dirección ingresada arriba.",
+                       "A map showing the neighborhood associated with the address entered above.")
+  } else {
+    alt_text <- ifelse(spanish == TRUE, 
+                       "Un mapa que no muestra ningún vecindario asociado porque la dirección ingresada arriba está fuera de Denver.",
+                       "A map showing no associated neighborhood because the address entered above is outside Denver.")
+  }
+                     
   add_nbhd_map <- ggplot() +
     geom_sf(data = neighborhoods,
             show.legend = "polygon", fill = NA, color = "black",
@@ -580,10 +589,12 @@ map_nbhd <- function(add_nbhd) {
     xlab("")  + ylab("") +
     
     {if(!is.na(add_nbhd$NBHD_NAME[1]))
-      labs(title = add_nbhd$NBHD_NAME[1])} +
+      labs(title = add_nbhd$NBHD_NAME[1],
+           alt = alt_text)} +
     
     {if(is.na(add_nbhd$NBHD_NAME[1]))
-      labs(title = nbhd_missing)} +
+      labs(title = nbhd_missing,
+           alt = alt_text)} +
     
     map_theme +
     theme(plot.title = element_text(hjust = 0.5))
