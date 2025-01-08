@@ -55,10 +55,10 @@ ui <- page_navbar(title = text["text_1"],
               ),
               card(
                 card_header(text["text_19"]),
-                p(HTML(text["text_20"])),
+                p(HTML(text["text_20"]))
               ),
-              card_footer(paste(text["text_21"], pub_date)),
-              card_footer(HTML(text["text_access"]))
+              card(card_footer(paste(text["text_21"], pub_date)),
+                   card_footer(HTML(text["text_access"])))
             )
   ),
   #' From the CC Tab

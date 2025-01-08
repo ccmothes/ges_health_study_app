@@ -4,12 +4,13 @@ Maps application. More information about the GES Health Study
 is available on our [project website](http://geshealthstudy.org).
 
 This project is a collaboration between the GES Health Study Community Council 
-(Nancy Santos, Dolores Alfaro, and Ana Varela) and the ENVIRONS team (Dr. Sheryl
-Magzamen, Dr. Sheena Martenies, Beth Lunsford, Nona Nyhart, Anna Kenyon, and Rocio 
-Monroy-Tello). Former members of the GES Community Council who contributed to the 
-interpretation of community data featured in this tool include: Sandra Ruiz 
-Parilla, Maria de Santiago, and Rebecca Trujillo. Marshall Thomas (former ENVIRONS 
-team member) also contributed to the development of the data sets used in this tool.
+(Nancy Santos, Dolores Alfaro, Ana Varela, and Sandra Ruiz Parrilla) and the 
+ENVIRONS team (Dr. Sheryl Magzamen, Dr. Sheena Martenies, Beth Lunsford, 
+Nona Nyhart, Anna Kenyon, and Rocio Monroy-Tello). Former members of the GES 
+Community Council who contributed to the interpretation of community data featured 
+in this tool include Maria de Santiago, and Rebecca Trujillo. Marshall Thomas 
+(former ENVIRONS team member) also contributed to the development of the data sets 
+used in this tool.
 
 The GES Health Study Interactive Map Application was developed using Shiny for R.
 
