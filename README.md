@@ -8,7 +8,7 @@ This project is a collaboration between the GES Health Study Community Council
 ENVIRONS team (Dr. Sheryl Magzamen, Dr. Sheena Martenies, Beth Lunsford, 
 Nona Nyhart, Anna Kenyon, and Rocio Monroy-Tello). Former members of the GES 
 Community Council who contributed to the interpretation of community data featured 
-in this tool include Maria de Santiago, and Rebecca Trujillo. Marshall Thomas 
+in this tool include Maria de Santiago and Rebecca Trujillo. Marshall Thomas 
 (former ENVIRONS team member) also contributed to the development of the data sets 
 used in this tool.
 
