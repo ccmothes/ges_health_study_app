@@ -21,16 +21,20 @@ GES Health Study Interactive Maps Application using Shiny for R.
 
 - **app.R** contains the app's UI and server functions.
 - **/ges_health_study_app**: This folder includes files required to run the application:
-    - dictionary_english.xlsx: The English version of the data dictionary used to generate the maps and other figures
-    - dictionary_spanish.xlsx: The Spanish version of the data dictionary used to generate the maps and other figures
-    - ges_app_data.rdata: Final clean data used by the app (generated using ges_health_study_app/code/03_final_data_sets.R)
+    - dictionary_english.xlsx: The English version of the variable dictionary used to generate the maps and other figures
+    - dictionary_spanish.xlsx: The Spanish version of the variable dictionary used to generate the maps and other figures
+    - ges_app_data.rdata: Final clean data used by the app (generated using ges_health_study_app/code/03_final_data_sets.R) and other
+    ancillary data frames used by the app
+    - ges_app_data.csv: Final clean data (population, environment, and health variables) used by the app in a CSV file
+    - ges_app_data_dictionary.xlsx: Data dictionary descirbing the variables used in the app
     - helpers.R: Code for all of the packages, dictionaries, and plotting functions used by the app
     - text_dictionary.xlsx: A spreadsheet containing the English and Spanish versions of the text used in the app
 - **/ges_health_study_app/code**: This folder includes the following scripts used to develop the app:
     - 01_format_shapefiles.R: cleaning and formatting shapefile data for the app
     - 02_acs_data.R: Using the tidecensus package to obtain and clean census variables
     - 03_final_data_sets.R: Code to format and save the final data sets for the app
-- **www**: This folder contains the .html and .png files used in the app
+- **rsconnect**: This folder contains files required for deployment on shinyapps.io (generated at deployment)
+- **www**: This folder contains the .html and .png files for non-interactive maps and figures used in the app
 
 ### Data Sources
 Population data were obtained from the 5-Year American Community Survey (2017-2021) 
