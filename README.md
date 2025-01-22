@@ -26,12 +26,12 @@ GES Health Study Interactive Maps Application using Shiny for R.
     - ges_app_data.rdata: Final clean data used by the app (generated using ges_health_study_app/code/03_final_data_sets.R) and other
     ancillary data frames used by the app
     - ges_app_data.csv: Final clean data (population, environment, and health variables) used by the app in a CSV file
-    - ges_app_data_dictionary.xlsx: Data dictionary descirbing the variables used in the app
+    - ges_app_data_dictionary.xlsx: Data dictionary describing the variables used in the app
     - helpers.R: Code for all of the packages, dictionaries, and plotting functions used by the app
     - text_dictionary.xlsx: A spreadsheet containing the English and Spanish versions of the text used in the app
 - **/ges_health_study_app/code**: This folder includes the following scripts used to develop the app:
     - 01_format_shapefiles.R: cleaning and formatting shapefile data for the app
-    - 02_acs_data.R: Using the tidecensus package to obtain and clean census variables
+    - 02_acs_data.R: Using the tidycensus package to obtain and clean census variables
     - 03_final_data_sets.R: Code to format and save the final data sets for the app
 - **rsconnect**: This folder contains files required for deployment on shinyapps.io (generated at deployment)
 - **www**: This folder contains the .html and .png files for non-interactive maps and figures used in the app

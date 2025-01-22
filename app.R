@@ -75,6 +75,7 @@ ui <- page_navbar(title = text["text_1"],
   nav_panel(title = text["text_10"],
             page_sidebar(
               sidebar = sidebar(width = 400,
+                                open = list(desktop = "open", mobile = "always-above"),
                                 h5(text["text_24"],
                                    style = 'color:white; font-weight: bold;'),
                                 card(text["text_25"],
@@ -171,6 +172,7 @@ ui <- page_navbar(title = text["text_1"],
   nav_panel(title = text["text_97"],
             page_sidebar(
               sidebar = sidebar(width = 400,
+                                open = list(desktop = "open", mobile = "always-above"),
                                 h5(text["text_24"], 
                                    style = 'color:white; font-weight: bold;'),
                                 card(text["text_25"],
@@ -313,11 +315,15 @@ ui <- page_navbar(title = text["text_1"],
             titlePanel(h1(text["text_17"], style = 'color:white; font-weight: bold;')),
             card(
               card_title(text["text_61"]),
-              p(text["text_62"]),
-              p(HTML(text["text_63"])),
-              p(HTML(text["text_64"])),
-              p(HTML(text["text_65"])),
-              p(HTML(text["text_66"])),
+              strong(text["text_62"]),
+              tags$ul(
+                tags$li(h3(HTML(text["text_63"]))),
+                tags$li(h3(HTML(text["text_64"]))),
+                tags$li(h3(HTML(text["text_65"]))),
+                tags$li(h3(HTML(text["text_66"]))),
+                tags$li(h3(HTML(text["text_124"]))),
+                tags$li(h3(HTML(text["text_125"])))
+              ),
               card_footer(paste(text["text_21"], pub_date)),
               card_footer(HTML(text["text_access"]))
             )
