@@ -696,6 +696,7 @@ server <- function(input, output, session) {
     },
     content = function(filename) {
       jpeg(filename, width = 980, height = 400, units = "px", pointsize = 12,
+           quality = 100,
            bg = "white")
       map1 <- map_variable(geo = "Neighborhoods", 
                            map_var = input$var1, show_boundaries = T,
@@ -716,6 +717,7 @@ server <- function(input, output, session) {
     },
     content = function(filename) {
       jpeg(filename, width = 980, height = 400, units = "px", pointsize = 12,
+           quality = 100,
            bg = "white")
       map1 <- map_variable(geo = "Neighborhoods", 
                            map_var = input$var3, show_boundaries = T,
@@ -736,6 +738,7 @@ server <- function(input, output, session) {
     },
     content = function(filename) {
       jpeg(filename, width = 980, height = 400, units = "px", pointsize = 12,
+           quality = 100,
            bg = "white")
       
       hist1 <- hist_variable(plot_var = input$var1, color_ramp = "Blues")
@@ -754,6 +757,7 @@ server <- function(input, output, session) {
     },
     content = function(filename) {
       jpeg(filename, width = 980, height = 400, units = "px", pointsize = 12,
+           quality = 100,
            bg = "white")
       
       hist1 <- hist_variable(plot_var = input$var3, color_ramp = "Blues")
@@ -773,6 +777,7 @@ server <- function(input, output, session) {
     },
     content = function(filename) {
       jpeg(filename, width = 980, height = 400, units = "px", pointsize = 12,
+           quality = 100,
            bg = "white")
       
       comp <- compare_variables(plot_var1 = input$var1, plot_var2 = input$var2,
@@ -790,6 +795,7 @@ server <- function(input, output, session) {
     },
     content = function(filename) {
       jpeg(filename, width = 980, height = 400, units = "px", pointsize = 12,
+           quality = 100,
            bg = "white")
       
       comp <- compare_variables(plot_var1 = input$var3, plot_var2 = input$var4,

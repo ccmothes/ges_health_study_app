@@ -39,7 +39,7 @@ text_dictionary <- readxl::read_xlsx("ges_health_study_app/text_dictionary.xlsx"
 #' PUBLISHED DATE
 #' When you make changes to the app, update the pub_date below
 
-pub_date <- "2025-01-22"
+pub_date <- "2025-01-24"
 #' ===============================================
 
 #' ===============================================
