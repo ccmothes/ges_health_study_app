@@ -39,13 +39,13 @@ text_dictionary <- readxl::read_xlsx("ges_health_study_app/text_dictionary.xlsx"
 #' PUBLISHED DATE
 #' When you make changes to the app, update the pub_date below
 
-pub_date <- "2025-01-24"
+pub_date <- "2025-01-27"
 #' ===============================================
 
 #' ===============================================
 #' LANGUAGE SWITCH: TRUE OR FALSE
 
-spanish <- T
+spanish <- F
 
 #' THIS SECTION CHANGES DEPENDING ON IF THE APP IS
 #' IN ENGLISH OR SPANISH!!

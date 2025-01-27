@@ -126,13 +126,14 @@ census tract estimates using population estimates that corresponded with the age
 group represented by the indicator (e.g., for “Preventive Care among Older Men” 
 we used the ACS estimates for the male populations ages 65 and older).
 
-Estimates of the ratio of alcohol retailers and cannabis cultivation sites to grocery 
-stores were based on licensing data from the Colorado Department of Revenue. 
-Alcohol licenses were limited to off premises license types, including the following 
-types: fermented malt beverage and wine off-premises, liquor licensed drug store, 
-and retail liquor stores. To identify alcohol retailers, food markets and groceries, 
-we downloaded data from 2021 for food market and groceries in Denver from the Denver 
-Open Data Catalog. License locations were first geocoded, and then we used a 
+Estimates of the ratio of alcohol retailers and cannabis cultivation sites to 
+grocery stores were based on licensing and location data. We identified cannabis 
+sites using data from the Colorado Department of Revenue [10].  To identify 
+alcohol retailers, food markets and groceries, we downloaded data from 2021 for 
+food market and groceries in Denver from the Denver Open Data Catalog.[11] Alcohol 
+licenses were limited to off premises license types, including the following types: 
+fermented malt beverage and wine off-premises, liquor licensed drug store, and 
+retail liquor stores. License locations were first geocoded, and then we used a 
 gravity model approach to calculate spatial access following methods described by 
 Trangenstein et al. The number of cannabis sites, alcohol retailers, and food 
 locations were summarized for each statistical neighborhood in Denver, and the 
