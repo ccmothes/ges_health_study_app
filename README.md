@@ -1,9 +1,9 @@
-# GES Health Study Interactive Maps Application
-The code in this repository was used to develop the GES Health Study Interactive 
-Maps application. More information about the GES Health Study
+# GES Community Health Study Interactive Maps Application
+The code in this repository was used to develop the GES Community Health Study Interactive 
+Maps application. More information about the GES Community Health Study
 is available on our [project website](http://geshealthstudy.org).
 
-This project is a collaboration between the GES Health Study Community Council 
+This project is a collaboration between the GES Community Health Study Community Council 
 (Nancy Santos, Dolores Alfaro, Ana Varela, and Sandra Ruiz Parrilla) and the 
 ENVIRONS team (Dr. Sheryl Magzamen, Dr. Sheena Martenies, Beth Lunsford, 
 Nona Nyhart, Anna Kenyon, and Rocio Monroy-Tello). Former members of the GES 
@@ -12,12 +12,12 @@ in this tool include Maria de Santiago and Rebecca Trujillo. Marshall Thomas
 (former ENVIRONS team member) also contributed to the development of the data sets 
 used in this tool.
 
-The GES Health Study Interactive Map Application was developed using Shiny for R.
+The GES Community Health Study Interactive Map Application was developed using Shiny for R.
 
 ### File Inventory
 
 This repository contained all of the code and data files needed to launch the 
-GES Health Study Interactive Maps Application using Shiny for R.
+GES Community Health Study Interactive Maps Application using Shiny for R.
 
 - **app.R** contains the app's UI and server functions.
 - **/ges_health_study_app**: This folder includes files required to run the application:
@@ -67,7 +67,7 @@ Our interactive mapping tool is an extension of our previous health impact asses
 online in both [English](https://drive.google.com/file/d/1X5zeZe-dITYX2soG2wS891wp51Bb9oww/view?usp=drive_link) 
 and [Spanish](https://drive.google.com/file/d/1fSWFgGYCd_53V4Po7EITAXYR04tNHefr/view?usp=drive_link). 
 Due to the statutory limitations of our funding, we were not able to collect 
-primary health or environmental data as part of the GES Health Study. Therefore, 
+primary health or environmental data as part of the GES Community Health Study. Therefore, 
 we included only data that were publicly available or had already been collected 
 during previous research efforts. 
 
@@ -106,7 +106,7 @@ hospitalization and low birth weight estimates were obtained from Colorado
 Enviroscreen 2.0.
 
 ### Overview of Data Formatting Methods
-Data used in the GES Health Study Interactive Maps app were available at the point, 
+Data used in the GES Community Health Study Interactive Maps app were available at the point, 
 30-m raster, or census tract level. Census tracts were assigned to a statistical 
 neighborhood by spatially joined the census tracts with neighborhood boundaries 
 made available from Denver Open Data. If a census tract overlapped with more 
