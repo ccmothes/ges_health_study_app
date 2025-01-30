@@ -66,7 +66,11 @@ ui <- page_navbar(title = text["text_1"],
             titlePanel(h1(text["text_8"], style = 'color:white; font-weight: bold;')),
             card(
               card_title(text["text_22"]),
-              p(text["text_23"]),
+              p(text["text_126"]),
+              p(text["text_127"]),
+              p(text["text_128"]),
+              p(text["text_129"]),
+              p(text["text_130"]),
               card_footer(paste(text["text_21"], pub_date)),
               card_footer(HTML(text["text_access"]))
             )
