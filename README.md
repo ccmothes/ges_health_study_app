@@ -3,6 +3,9 @@ The code in this repository was used to develop the GES Community Health Study I
 Maps application. More information about the GES Community Health Study
 is available on our [project website](http://geshealthstudy.org).
 
+The GES Community Health Study Interactive Map Application was developed using 
+Shiny for R.
+
 This project is a collaboration between the GES Community Health Study Community Council 
 (Nancy Santos, Dolores Alfaro, Ana Varela, and Sandra Ruiz Parrilla) and the 
 ENVIRONS team (Dr. Sheryl Magzamen, Dr. Sheena Martenies, Beth Lunsford, 
@@ -12,7 +15,14 @@ in this tool include Maria de Santiago and Rebecca Trujillo. Marshall Thomas
 (former ENVIRONS team member) also contributed to the development of the data sets 
 used in this tool.
 
-The GES Community Health Study Interactive Map Application was developed using Shiny for R.
+### Funding
+This work was supported by the Colorado Department of Transportation (CDOT) through 
+the Colorado Department of Public Health and Environment CDPHE via the State Highway 
+Fund. Neither CDOT nor CDPHE was involved in the design, data collection, analysis, 
+interpretation, or writing of the manuscript. The views expressed in this document 
+are solely those of the authors and do not necessarily reflect those of CDOT or 
+CDPHE, and neither agency endorses any products or commercial services mentioned 
+in this publication.
 
 ### File Inventory
 
