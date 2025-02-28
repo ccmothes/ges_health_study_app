@@ -59,9 +59,8 @@ Environmental data were obtained from a number of sources:
 
 - Criteria air pollutant (PM<sub>2.5</sub>, PM<sub>10</sub>, O<sub>3</sub>, NO<sub>2</sub>, SO<sub>2</sub>, and CO) data were 
 obtained from [US EPA](https://aqs.epa.gov/aqsweb/documents/data_api.html)
-- Alcohol retailer and cannabis cultivation license information were obtained from 
-the [Colorado Department of Revenue](https://sbg.colorado.gov/) and food retail 
-location data were obtained from [Denver Open Data](https://opendata-geospatialdenver.hub.arcgis.com/datasets/c65b86c4881044df859913bc0d9075a5_0/explore)
+- Alcohol retailer and cannabis cultivation license information and food retail 
+location data were obtained from the [Colorado Department of Revenue](https://sbg.colorado.gov/) and  were obtained from [Denver Open Data](https://opendata-geospatialdenver.hub.arcgis.com/datasets/c65b86c4881044df859913bc0d9075a5_0/explore)
 - Grocery store access data were obtained from [Denver Open Data](https://opendata-geospatialdenver.hub.arcgis.com/datasets/8721ca222d4348d3a6a0d74e7175309f_308/explore)
 - Street temperature data were obtained from [Denver Green Continuum](https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Department-of-Transportation-and-Infrastructure/Programs-Services/Green-Infrastructure/Green-Continuum)
 - Transportation noise data were obtained from [US Department of Transportation](https://www.bts.gov/geospatial/national-transportation-noise-map)
@@ -76,10 +75,8 @@ Our interactive mapping tool is an extension of our previous health impact asses
 (HIA) conducted for the GES neighborhoods published in January 2024. This HIA is available
 online in both [English](https://drive.google.com/file/d/1X5zeZe-dITYX2soG2wS891wp51Bb9oww/view?usp=drive_link) 
 and [Spanish](https://drive.google.com/file/d/1fSWFgGYCd_53V4Po7EITAXYR04tNHefr/view?usp=drive_link). 
-Due to the statutory limitations of our funding, we were not able to collect 
-primary health or environmental data as part of the GES Community Health Study. Therefore, 
-we included only data that were publicly available or had already been collected 
-during previous research efforts. 
+The scope of the GES Community Health Study focuses on using data data that are publicly available 
+or have already been collected during previous research efforts. 
 
 We further refined and updated (when needed) our HIA data for inclusion in the 
 interactive mapping tool to ensure we were presenting data that were (A) sufficient 
@@ -92,8 +89,8 @@ neighborhood residents, e.g., access to grocery stores and cannabis cultivation
 sites. When feasible, we selected data that represented a longer period of time 
 (i.e., five years) over data representing shorter durations and prioritized data 
 that could be presented at the neighborhood level. Point-level data included in 
-the HIA that could not be reasonable interpolated (e.g., water quality sampling 
-locations along the South Platt River) were excluded. 
+the HIA that could not be reasonable interpolated or summarized (e.g., water 
+quality sampling locations along the South Platt River) were excluded. 
 
 Our interactive mapping tool includes 10 indicators of population characteristics 
 (race and ethnicity, educational attainment, age distributions, unemployment, 
@@ -104,7 +101,7 @@ release from the US Census Bureau1 using the tidycensus package in R.
 We included 13 indicators of the physical, chemical, and built environments, 
 including measures of food access, street temperature and noise, tree equity, 
 and criteria air pollutants. Sources for these data include the City and County 
-of Denver, the Colorado Department of Revenue,4 Denver Department of Transportation, 
+of Denver, the Colorado Department of Revenue, Denver Department of Transportation, 
 the US Department of Transportation, American Forests, the US Census Bureau, and 
 the US Environmental Protection Agency.
 
@@ -113,7 +110,7 @@ obtained primarily from the 2023 release of PLACES data from the Centers for
 Disease Control and Prevention. Life expectancy data were obtained from U.S. 
 Small-Area Life Expectancy Estimates Project (USALEEP) and asthma 
 hospitalization and low birth weight estimates were obtained from Colorado 
-Enviroscreen 2.0.
+EnviroScreen 2.0.
 
 ### Overview of Data Formatting Methods
 Data used in the GES Community Health Study Interactive Maps app were available at the point, 
@@ -131,24 +128,21 @@ Health data were obtained primarily from the 2023 release of the PLACES data fro
 the Centers for Disease Control and Prevention. Life expectancy data were obtained 
 from U.S. Small-Area Life Expectancy Estimates Project (USALEEP)  and asthma 
 hospitalization and low birth weight estimates were obtained from Colorado 
-Enviroscreen 2.0. For the health indicators presented as rates, we weighted the 
+EnviroScreen 2.0. For the health indicators presented as rates, we weighted the 
 census tract estimates using population estimates that corresponded with the age 
 group represented by the indicator (e.g., for “Preventive Care among Older Men” 
 we used the ACS estimates for the male populations ages 65 and older).
 
 Estimates of the ratio of alcohol retailers and cannabis cultivation sites to 
 grocery stores were based on licensing and location data. We identified cannabis 
-sites using data from the Colorado Department of Revenue [10].  To identify 
-alcohol retailers, food markets and groceries, we downloaded data from 2021 for 
-food market and groceries in Denver from the Denver Open Data Catalog.[11] Alcohol 
-licenses were limited to off premises license types, including the following types: 
-fermented malt beverage and wine off-premises, liquor licensed drug store, and 
-retail liquor stores. License locations were first geocoded, and then we used a 
-gravity model approach to calculate spatial access following methods described by 
-Trangenstein et al. The number of cannabis sites, alcohol retailers, and food 
-locations were summarized for each statistical neighborhood in Denver, and the 
-ratio of ratio of cannabis cultivation and alcohol retailers to food markets and 
-groceries was calculated.
+sites and alcohol retailers using data from the Colorado Department of Revenue [10] 
+and Denver Open Data Catalog.[11] Alcohol licenses were limited to off premises 
+license types, including the following types: fermented malt beverage and wine 
+off-premises, liquor licensed drug store, and retail liquor stores. License 
+locations were first geocoded, and then the number of cannabis sites, alcohol 
+retailers, and food locations were summarized for each statistical neighborhood 
+in Denver. Then, ratio of ratio of cannabis cultivation and alcohol retailers to 
+food markets and groceries was calculated.
 
 Data on surface temperatures averaged at the street segment level were made 
 available to the ENVIRONS team by Denver Department of Transportation and 
