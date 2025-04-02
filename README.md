@@ -24,6 +24,16 @@ are solely those of the authors and do not necessarily reflect those of CDOT or
 CDPHE, and neither agency endorses any products or commercial services mentioned 
 in this publication.
 
+### Recommended Citations
+The recommended citation for the Interactive Maps application is:
+
+Estudio de Nuestros Vecinos para Investigar los Riesgos y Nuestra Salud 
+(ENVIRONS). April 2025. GES Community Health Study Interactive Maps. Fort 
+Collins, CO.
+
+Please cite the report and this repository if you replicate our work in other 
+contexts.
+
 ### File Inventory
 
 This repository contained all of the code and data files needed to launch the 
