@@ -26,7 +26,7 @@ are solely those of the authors and do not necessarily reflect those of CDOT or
 CDPHE, and neither agency endorses any products or commercial services mentioned 
 in this publication.
 
-### Recommended Citations
+### Recommended Citation
 The recommended citation for the Interactive Maps application is:
 
 Estudio de Nuestros Vecinos para Investigar los Riesgos y Nuestra Salud 
