@@ -1,0 +1,26 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: GES Community Health Study Interactive Maps Application
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Sheena E.
+    family-names: Martenies
+    email: smarte4@illinois.edu
+    affiliation: University of Illinois Urbana-Champaign
+    orcid: 'https://orcid.org/0000-0001-9206-5132'
+  - name: >-
+      Estudio de Nuestros Vecinos para Investigar los
+      Riesgos y Nuestra Salud  (ENVIRONS)
+    city: 'Fort Collins, CO'
+    country: US
+    website: 'http://www.gesheathstudy.org'
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.15127659
+version: v1.0
+date-released: '2025-04-02'
