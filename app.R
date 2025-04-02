@@ -20,7 +20,7 @@ ui <- page_navbar(title = text["text_1"],
             titlePanel(h1(text["text_2"], style = 'color:white; font-weight: bold;')),
             page_fluid(
               card(card_header(h6(HTML(text["text_switch"]))),
-                   card_header(h6(HTML(text["text_access"])))),
+                   text["text_access"]),
               card(
                 card_header(h3(text["text_3"])),
                 p(text["text_4"]),
@@ -101,6 +101,7 @@ ui <- page_navbar(title = text["text_1"],
               p(HTML(text["text_148"])),
               p(HTML(text["text_149"])),
               p(HTML(text["text_150"])),
+              p(HTML(text["text_152"])),
               card_footer(paste(text["text_21"], pub_date)),
               card_footer(HTML(text["text_access"]))
             )

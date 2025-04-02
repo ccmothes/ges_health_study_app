@@ -39,13 +39,13 @@ text_dictionary <- readxl::read_xlsx("ges_health_study_app/text_dictionary.xlsx"
 #' PUBLISHED DATE
 #' When you make changes to the app, update the pub_date below
 
-pub_date <- "2025-02-28"
+pub_date <- "2025-04-02"
 #' ===============================================
 
 #' ===============================================
 #' LANGUAGE SWITCH: TRUE OR FALSE
 
-spanish <- F
+spanish <- T
 
 #' THIS SECTION CHANGES DEPENDING ON IF THE APP IS
 #' IN ENGLISH OR SPANISH!!
@@ -97,9 +97,9 @@ if(spanish == F) {
   names(text) <- text_dictionary$text_id
   
   units <- c("percent" = "%",
-             "per_1000" = " por 1.000",
-             "per_10000" = " por 10.000",
-             "per_100000" = " por 100.000",
+             "per_1000" = " por 1,000",
+             "per_10000" = " por 10,000",
+             "per_100000" = " por 100,000",
              "dollars" = "$",
              "ug_m3" = " \U00B5g/m\U00B3",
              "ppb" = " ppb",
@@ -114,11 +114,11 @@ if(spanish == F) {
   nbn_map_source <- "interactive_nbn_demographics_map_es_02.27.23.html"
   tree_map_source <- "interactive_tree_equity_map_es_v2_02.27.23.html"
   
-  geo_name <- "Barrios"
-  den_name <- "Barrios de Denver"
-  ges_name <- "Barrios de GES"
-  hist_y_lab <- "Número de barrios"
-  nbhd_missing <- "Barrio no disponible"
+  geo_name <- "Vecindarios"
+  den_name <- "Vecindarios de Denver"
+  ges_name <- "Vecindarios de GES"
+  hist_y_lab <- "Número de vecindarios"
+  nbhd_missing <- "Vecindario no disponible"
 }
 
 #' END OF THE LANUGUAGE SPECIFIC SECTION OF CODE
@@ -513,6 +513,12 @@ compare_variables <- function(plot_var1, plot_var2,
                                             nsmall = 1), units[[units2]]),
                      paste0("Max: ", units[[units1]],
                             format(round(max(bar_df2$value, na.rm = T), 1), nsmall = 1)))
+  
+  bar2_alt_text <- ifelse(spanish == T,
+                          paste0("Un gráfico que compara ", alt_text1, " and ", alt_text2,
+                                 " entre ", plot_nbhd1, " y ", plot_nbhd2),
+                          paste0("Chart comparing ", alt_text1, " and ", alt_text2,
+                                 " between ", plot_nbhd1, " and ", plot_nbhd2))
 
   bar2 <- ggplot(data = filter(bar_df2, NBHD_NAME %in% c(plot_nbhd1, plot_nbhd2))) +
     geom_linerange(aes(xmin = min, xmax = max, y = var),
@@ -535,8 +541,7 @@ compare_variables <- function(plot_var1, plot_var2,
     #scale_y_discrete(labels = dictionary[which(dictionary$variable == var1), "short_var_name"]) +
     xlim(c(-0.1, 1.1)) +
     xlab("")  + ylab("") +
-    labs(alt = paste0("Chart comparing ", alt_text1, " and ", alt_text2,
-                      " between ", plot_nbhd1, " and ", plot_nbhd2)) +
+    labs(alt = bar2_alt_text) +
     ggtitle(label = plot_title2,
             subtitle = paste0(plot_subtitle2, "\n", text["text_84"], " ", source2)) +
     theme_void()
