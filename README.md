@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/902918427.svg)](https://doi.org/10.5281/zenodo.15127659)
+
 # GES Community Health Study Interactive Maps Application
 The code in this repository was used to develop the GES Community Health Study Interactive 
 Maps application. More information about the GES Community Health Study
