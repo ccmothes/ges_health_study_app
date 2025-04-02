@@ -31,7 +31,7 @@ The recommended citation for the Interactive Maps application is:
 
 Estudio de Nuestros Vecinos para Investigar los Riesgos y Nuestra Salud 
 (ENVIRONS). April 2025. GES Community Health Study Interactive Maps. Fort 
-Collins, CO. https://doi.org/10.5281/zenodo.15127659.
+Collins, CO. 
 
 Please cite the report and this repository if you replicate our work in other 
 contexts.
