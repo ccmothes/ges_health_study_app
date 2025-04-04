@@ -133,14 +133,19 @@ ui <- page_navbar(title = text["text_1"],
               #titlePanel(text["text_10"]),
               page_fluid(
                 layout_columns(
-                  card(
+                  card(card_header(text["text_10"]),
                     p(text["text_30"]),
                     p(text["text_31"]),
                     p(text["text_32"]),
                     p(text["text_33"]),
                     p(text["text_34"]),
-                    p(strong(text["text_120"]), text["text_121"], 
-                      em(text["text_122"]), strong(text["text_123"]))
+                    card(card_header(strong(text["text_120"])),
+                         max_height = 200,
+                         full_screen = T,
+                         p(text["text_121"], 
+                         em(text["text_122"]), 
+                         strong(text["text_123"]))
+                    )
                   ),
                   card(card_header(text["text_115"]),
                        text["text_116"],
@@ -230,14 +235,19 @@ ui <- page_navbar(title = text["text_1"],
               #titlePanel(text["text_97"]),
               page_fluid(
                 layout_columns(
-                  card(
+                  card(card_header(text["text_97"]),
                     p(text["text_90"]),
                     p(text["text_91"]),
                     p(text["text_32"]),
                     p(text["text_33"]),
                     p(text["text_34"]),
-                    p(strong(text["text_120"]), text["text_121"], 
-                      em(text["text_122"]), strong(text["text_123"]))
+                    card(card_header(strong(text["text_120"])),
+                         max_height = 200,
+                         full_screen = T,
+                         p(text["text_121"], 
+                           em(text["text_122"]), 
+                           strong(text["text_123"]))
+                    )
                   ),
                   card(card_header(text["text_115"]),
                        text["text_116"],
