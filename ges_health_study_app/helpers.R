@@ -45,7 +45,7 @@ pub_date <- "2025-04-04"
 #' ===============================================
 #' LANGUAGE SWITCH: TRUE OR FALSE
 
-spanish <- F
+spanish <- T
 
 #' THIS SECTION CHANGES DEPENDING ON IF THE APP IS
 #' IN ENGLISH OR SPANISH!!

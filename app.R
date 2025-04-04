@@ -101,7 +101,6 @@ ui <- page_navbar(title = text["text_1"],
               p(HTML(text["text_148"])),
               p(HTML(text["text_149"])),
               p(HTML(text["text_150"])),
-              p(HTML(text["text_152"])),
               card_footer(paste(text["text_21"], pub_date)),
               card_footer(HTML(text["text_access"]))
             )
@@ -386,6 +385,7 @@ ui <- page_navbar(title = text["text_1"],
                    p(text["text_70"]),
                    p(HTML(text["text_71"])),
                    p(HTML(text["text_86"])),
+                   p(HTML(text["text_152"])),
                    card_footer(paste(text["text_21"], pub_date)),
                    card_footer(HTML(text["text_access"]))
               ),
