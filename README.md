@@ -27,11 +27,19 @@ CDPHE, and neither agency endorses any products or commercial services mentioned
 in this publication.
 
 ### Recommended Citation
-The recommended citation for the Interactive Maps application is:
+The recommended citation for the Interactive Maps application and report is:
 
 Estudio de Nuestros Vecinos para Investigar los Riesgos y Nuestra Salud 
-(ENVIRONS). April 2025. GES Community Health Study Interactive Maps. Fort 
+(ENVIRONS). February 2025. GES Community Health Study Interactive Maps. Fort 
 Collins, CO. 
+
+The recommended citation for the underlying R code is:
+
+Martenies SE, Lunsford E, Kenyon A, Nyhart N, Monroy-Tello R, Thomas M, Alfaro D, 
+Ruiz Parrilla S, Santos N, Varela A, Magzamen S, Estudio de Nuestros Vecinos para 
+Investigar los Riesgos y Nuestra Salud  (ENVIRONS). April 2025. GES Community 
+Health Study Interactive Maps Application (Version 1.0) [Computer software]. 
+DOI: 10.5281/zenodo.15127659
 
 Please cite the report and this repository if you replicate our work in other 
 contexts.
