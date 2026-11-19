@@ -196,34 +196,36 @@ map_variable <- function(geo = "Neighborhoods", map_var, show_boundaries = T,
   plot_subtitle <- dictionary[which(dictionary$variable == map_var), "full_var_name"]
   legend_title <- dictionary[which(dictionary$variable == map_var), "legend_title"]
   show_legend <- dictionary[which(dictionary$variable == map_var), "show_legend"]
+  # ggplot2 >= 4.0 errors on show.legend = "polygon"; TRUE gives the same polygon legend key
+  if (identical(show_legend, "polygon")) show_legend <- TRUE
   label_function <- dictionary[which(dictionary$variable == map_var), "label_fn"]
   source <- dictionary[which(dictionary$variable == map_var), "source"]
   footnote <- dictionary[which(dictionary$variable == map_var), "note"]
   alt_text <- dictionary[which(dictionary$variable == map_var), "alt_text"]
   unit <- dictionary[which(dictionary$variable == map_var), "units"]
-
+  
   map <- ggplot() +
     #' Layers if geography is neighborhoods:
     {if(geo == "Neighborhoods")
       geom_sf(data = nbhd_data,
               aes(fill = .data[[map_var]]), 
-                  show.legend = show_legend,
+              show.legend = show_legend,
               color = "black", inherit.aes = F)} +
     {if(show_boundaries & geo == "Neighborhoods")
       geom_sf(data = neighborhoods, aes(color = "denver"),
-              show.legend = "polygon", fill = NA,
+              show.legend = TRUE, fill = NA,
               inherit.aes = F, linewidth = 0.25)} +
     {if(show_boundaries & geo == "Neighborhoods")
       geom_sf(data = ges, aes(color = "ges"), fill = NA,
-              show.legend = "polygon", inherit.aes = F, linewidth = 1.5) 
-      } +
+              show.legend = TRUE, inherit.aes = F, linewidth = 1.5) 
+    } +
     {if(show_boundaries & geo == "Neighborhoods")
       scale_color_manual(name = geo_name,
                          values = c("denver" = "black",
                                     "ges" = ges_col),
                          labels = c("denver" = den_name,
                                     "ges" = ges_name))} +
-
+    
     #' Layers if geography is census tracts:
     # {if(geo == "Census tracts")
     #   geom_sf(data = acs_tracts,
@@ -231,11 +233,11 @@ map_variable <- function(geo = "Neighborhoods", map_var, show_boundaries = T,
     #           color = "black", inherit.aes = F)} +
     # {if(show_boundaries & geo == "Census tracts")
     #   geom_sf(data = tracts20, aes(color = "denver"),
-    #           show.legend = "polygon", fill = NA,
+    #           show.legend = TRUE, fill = NA,
     #           inherit.aes = F, linewidth = 0.25)} +
     # {if(show_boundaries & geo == "Census tracts")
     #   geom_sf(data = ges_tracts20, aes(color = "ges"), fill = NA,
-    #           show.legend = "polygon", inherit.aes = F, linewidth = 1)} +
+    #           show.legend = TRUE, inherit.aes = F, linewidth = 1)} +
     # {if(show_boundaries & geo == "Census tracts")
     #   scale_color_manual(name = geo,
     #                      values = c("denver" = "black",
@@ -272,14 +274,14 @@ map_variable <- function(geo = "Neighborhoods", map_var, show_boundaries = T,
                                    breaks = function(x) 
                                      quantile(x, probs = c(0.25, 0.5, 0.75)),
                                    show.limits = T)} +
-
+    
     #' Correcting the legend for the boundaries
     {if(show_boundaries)
       guides(color = guide_legend(override.aes = list(color = c("black", ges_col),
                                                       fill = c(NA, NA),
                                                       linewidth = c(0.25, 1)),
                                   order = 1))} +
-
+    
     #' Including highways if requested
     {if(show_highways)
       geom_sf(data = den_highways, #show.legend = "line",
@@ -287,7 +289,7 @@ map_variable <- function(geo = "Neighborhoods", map_var, show_boundaries = T,
     {if(show_highways)
       geom_sf_text(data = den_hw_labels, show.legend = F, color = "darkblue",
                    aes(label = name), inherit.aes = F, fontface = "bold")} +
-
+    
     #' Transparent layer with the neighborhood names
     geom_sf_interactive(data = nbhd_data, 
                         aes(tooltip = paste0(NBHD_NAME, ": ",
@@ -316,7 +318,7 @@ box_variable <- function(plot_var, color_ramp) {
   label_function <- dictionary[which(dictionary$variable == plot_var), "label_fn"]
   source <- dictionary[which(dictionary$variable == plot_var), "source"]
   alt_text <- dictionary[which(dictionary$variable == plot_var), "alt_text"]
-
+  
   box <- ggplot() +
     geom_boxplot(data  = filter(nbhd_data_long, var == plot_var),
                  aes(x = value, y = var),
@@ -384,7 +386,7 @@ compare_map <- function(plot_nbhd1, plot_nbhd2) {
       mutate(nudge_y = 0.01)
     cols <- c(ges_col)
     labs <- c(plot_nbhd1)
-      
+    
   } else {
     comp_nbhds <- filter(neighborhoods, NBHD_NAME %in% c(plot_nbhd1, plot_nbhd2)) %>%
       mutate(nbhd_fac = factor(NBHD_NAME, levels = c(plot_nbhd1, plot_nbhd2),
@@ -401,7 +403,7 @@ compare_map <- function(plot_nbhd1, plot_nbhd2) {
     geom_sf(data = filter(nbhd_data, NBHD_NAME == plot_nbhd2),
             fill = den_col, color = "black") +
     geom_sf_label(data = comp_nbhds,
-                        aes(label = nbhd_fac, color = nbhd_fac),
+                  aes(label = nbhd_fac, color = nbhd_fac),
                   nudge_y = comp_nbhds$nudge_y,
                   hjust = "inward", fontface = "bold",
                   size = 4,
@@ -425,14 +427,14 @@ compare_map <- function(plot_nbhd1, plot_nbhd2) {
 #' Bar chart function
 compare_variables <- function(plot_var1, plot_var2,
                               plot_nbhd1, plot_nbhd2) {
-
+  
   #' What we need for the first variable
   plot_title1 <- dictionary[which(dictionary$variable == plot_var1), "short_var_name"]
   plot_subtitle1 <- dictionary[which(dictionary$variable == plot_var1), "full_var_name"]
   units1 <- dictionary[which(dictionary$variable == plot_var1), "units"]
   source1 <- dictionary[which(dictionary$variable == plot_var1), "source"]
   alt_text1 <- dictionary[which(dictionary$variable == plot_var1), "alt_text"]
-
+  
   bar_df1 <- filter(nbhd_data_long, var == plot_var1) %>%
     st_set_geometry(NULL) %>%
     as.data.frame() %>%
@@ -456,7 +458,7 @@ compare_variables <- function(plot_var1, plot_var2,
                                             nsmall = 1), units[[units1]]),
                      paste0("Max: ", units[[units1]],
                             format(round(max(bar_df1$value, na.rm = T), 1), nsmall = 1)))
-
+  
   bar1 <- ggplot(data = filter(bar_df1, NBHD_NAME %in% c(plot_nbhd1, plot_nbhd2))) +
     geom_linerange(aes(xmin = min, xmax = max, y = var),
                    linewidth = 10, color = "gray50", alpha = 0.25) +
@@ -482,14 +484,14 @@ compare_variables <- function(plot_var1, plot_var2,
             subtitle = paste0(plot_subtitle1, "\n", text["text_84"], " ", source1)) +
     theme_void()
   bar1
-
+  
   #' What we need for the second variable
   plot_title2 <- dictionary[which(dictionary$variable == plot_var2), "short_var_name"]
   plot_subtitle2 <- dictionary[which(dictionary$variable == plot_var2), "full_var_name"]
   units2 <- dictionary[which(dictionary$variable == plot_var2), "units"]
   source2 <- dictionary[which(dictionary$variable == plot_var2), "source"]
   alt_text2 <- alt_text <- dictionary[which(dictionary$variable == plot_var2), "alt_text"]
-
+  
   bar_df2 <- filter(nbhd_data_long, var == plot_var2) %>%
     st_set_geometry(NULL) %>%
     as.data.frame() %>%
@@ -519,7 +521,7 @@ compare_variables <- function(plot_var1, plot_var2,
                                  " entre ", plot_nbhd1, " y ", plot_nbhd2),
                           paste0("Chart comparing ", alt_text1, " and ", alt_text2,
                                  " between ", plot_nbhd1, " and ", plot_nbhd2))
-
+  
   bar2 <- ggplot(data = filter(bar_df2, NBHD_NAME %in% c(plot_nbhd1, plot_nbhd2))) +
     geom_linerange(aes(xmin = min, xmax = max, y = var),
                    linewidth = 10, color = "gray50", alpha = 0.25) +
@@ -546,7 +548,7 @@ compare_variables <- function(plot_var1, plot_var2,
             subtitle = paste0(plot_subtitle2, "\n", text["text_84"], " ", source2)) +
     theme_void()
   bar2
-
+  
   combined_plot <- bar1 / bar2
   return(combined_plot)
 }
@@ -581,15 +583,15 @@ map_nbhd <- function(add_nbhd) {
                        "Un mapa que no muestra ningún vecindario asociado porque la dirección ingresada arriba está fuera de Denver.",
                        "A map showing no associated neighborhood because the address entered above is outside Denver.")
   }
-                     
+  
   add_nbhd_map <- ggplot() +
     geom_sf(data = neighborhoods,
-            show.legend = "polygon", fill = NA, color = "black",
+            show.legend = TRUE, fill = NA, color = "black",
             inherit.aes = F, linewidth = 0.25) +
     {if(!is.na(add_nbhd$NBHD_NAME[1]))
       geom_sf(data = filter(neighborhoods, NBHD_NAME == add_nbhd$NBHD_NAME[1]), 
               fill = "darkgreen", color = "darkgreen", alpha = 0.2,
-              show.legend = "polygon", inherit.aes = F, linewidth = 1)} +
+              show.legend = TRUE, inherit.aes = F, linewidth = 1)} +
     
     xlab("")  + ylab("") +
     
@@ -606,5 +608,3 @@ map_nbhd <- function(add_nbhd) {
   
   return(add_nbhd_map)
 }
-
-
